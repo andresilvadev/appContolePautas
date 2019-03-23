@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PautaPage } from './pauta.page';
+import { PautaCadastroPage } from './pauta-cadastro.page';
 
 @NgModule({
   imports: [
@@ -11,11 +11,12 @@ import { PautaPage } from './pauta.page';
     CommonModule,
     FormsModule,
     RouterModule.forChild([
-      { path: '', component: PautaPage }
+      { path: '', component: PautaCadastroPage },
+      { path: ':id', component: PautaCadastroPage }
     ])
   ],
   declarations: [
-    PautaPage
+    PautaCadastroPage
   ]
 })
 export class PautaPageModule {}

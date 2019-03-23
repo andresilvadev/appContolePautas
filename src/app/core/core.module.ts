@@ -9,7 +9,7 @@ import { PautaService } from '../pauta/pauta.service';
 
 @NgModule({
   declarations: [],
-  imports: [
+  imports: [    
     CommonModule,
     HttpClientModule,
     RouterModule

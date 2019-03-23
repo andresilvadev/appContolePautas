@@ -4,5 +4,5 @@ export class PautaModel {
     descricao: string;
     detalhes: string;
     autor: string;
-    status: string;
+    status: string = "ABERTO";
   }

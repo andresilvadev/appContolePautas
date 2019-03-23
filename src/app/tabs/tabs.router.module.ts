@@ -22,6 +22,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../pauta/pauta.module#PautaPageModule'
+          },
+          {
+            path: ':id',
+            loadChildren: '../pauta/pauta.module#PautaPageModule'
           }
         ]
       },

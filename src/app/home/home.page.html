@@ -1,11 +1,87 @@
 <ion-header>
-  <ion-toolbar color="warning">
-    <ion-title class="text-white">
-      Home
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="warning">
+        <ion-title class="text-white">
+            Home
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>    
+<ion-content>
+
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-button (click)="clickedSearch()" color="secondary">
+                <ion-icon slot="icon-only" name="search"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-searchbar placeholder="Pesquisar"></ion-searchbar>
+    </ion-toolbar>
+
+    <ion-segment (ionChange)="segmentChanged($event)" color="medium" class="p-l-5 p-r-5 p-b-10">
+        <ion-segment-button value="ABERTO" [(checked)]="isChecked" class="titulo-pauta-segment">
+            <ion-label>Pautas abertas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="FECHADO" class="titulo-pauta-segment">
+            <ion-label>Pautas fechadas</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+    <ion-list>
+        <ion-item detail *ngFor="let pauta of data" (click)="pautaSelecionada(pauta)">
+            <ion-label text-wrap>
+                <ion-text color="dark">
+                    <h2 class="m-b-5">Título: {{ pauta.titulo }}</h2>
+                </ion-text>
+                <ion-text color="medium">
+                    <p>Breve descrição: {{ pauta.descricao.length > 25 ? pauta.descricao.substring(0,25)+"..." : pauta.descricao }}</p>                    
+                </ion-text>
+            </ion-label>
+        </ion-item>
+        
+        <div *ngIf="!data">
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            </div>
+
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </div>
+
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </div>
+
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </div>
+
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </div>
+
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </div>
+
+            <div class="ion-padding custom-skeleton">
+                <ion-skeleton-text animated style="width: 45%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </div>
+        </div>
+
+    </ion-list>
 
 </ion-content>

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs';
 
-import { environment } from './../../environments/environment';
+import { environment } from '../../environments/environment';
 
 import { CapptanHttp } from '../seguranca/capptan-http';
 import { PautaModel } from '../core/model';
@@ -23,7 +23,7 @@ export class PautaService {
   listarTodas(): Promise<any> {
     return this.http.get<any>(this.pautaUrl)
       .toPromise()
-      .then(response => response.content);
+      .then(response => response);
   }
 
   excluir(id: number): Promise<void> {
