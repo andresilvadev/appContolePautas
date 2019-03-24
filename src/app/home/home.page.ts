@@ -70,7 +70,8 @@ export class HomePage {
                 });
                 
                 setTimeout(() => {
-                    this.data = this.pautasAbertas;        
+                    this.data = this.pautasAbertas;
+                    console.log(this.data);
                 }, 300);
             })
             .catch(erro => this.errorHandler.handle(erro));
@@ -89,7 +90,8 @@ export class HomePage {
                     }
                 });
                 setTimeout(() => {
-                    this.data = this.pautasFechadas;        
+                    this.data = this.pautasFechadas;
+                    console.log(this.data);    
                 }, 300);
             })
             .catch(erro => this.errorHandler.handle(erro));

@@ -21,14 +21,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  // login(usuario: string, senha: string) {
-  //   this.auth.login(usuario, senha)
-  //     .then(() => {
-  //       this.router.navigate(['/tabs']);
-  //     })
-  //     .catch(erro => {
-  //       this.errorHandler.handle(erro);
-  //     });
-  // }
+  login(usuario: string, senha: string) {
+    this.auth.login(usuario, senha)
+      .then(() => {
+        this.router.navigate(['/tabs']);
+      })
+      .catch(erro => {
+        this.errorHandler.handle(erro);
+      });
+  }
 
 }

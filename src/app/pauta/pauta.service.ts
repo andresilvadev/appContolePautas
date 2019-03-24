@@ -14,10 +14,9 @@ export class PautaService {
   pautaUrl: string;
  
   constructor(
-      //private http: CapptanHttp
-      private http: HttpClient
+      private http: CapptanHttp      
       ) {
-    this.pautaUrl = `${environment.apiUrl}/pautas`;    
+    this.pautaUrl = `${environment.apiUrl}/api/pautas`;    
   }
 
   listarTodas(): Promise<any> {

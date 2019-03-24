@@ -14,11 +14,11 @@ export class LogoutService {
     private http: CapptanHttp,
     private auth: AuthService
   ) {
-    this.tokensRenokeUrl = `${environment.apiUrl}/tokens/revoke`;
+    this.tokensRenokeUrl = `${environment.apiUrl}/api/tokens/revoke`;
   }
 
   logout() {
-    return this.http.delete(this.tokensRenokeUrl, { withCredentials: true })
+    return this.http.get(this.tokensRenokeUrl, { withCredentials: true })
       .toPromise()
       .then(() => {
         this.auth.limparAccessToken();

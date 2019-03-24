@@ -10,6 +10,9 @@ import { environment } from './../../environments/environment';
 export class AuthService {
 
   oauthTokenUrl: string;
+  usuarioUrl: string;
+  forgotUrl: string;
+  registerUrl: string;
   jwtPayload: any;
 
   constructor(
@@ -17,14 +20,19 @@ export class AuthService {
     private jwtHelper: JwtHelperService
   ) {
     this.oauthTokenUrl = `${environment.apiUrl}/oauth/token`;
+    this.usuarioUrl = `${environment.apiUrl}/api/user/me`;
+    this.forgotUrl = `${environment.apiUrl}/api/password/create`
+    this.registerUrl = `${environment.apiUrl}/api/register`
+    
     this.carregarToken();
   }
 
   login(usuario: string, senha: string): Promise<void> {
     const headers = new HttpHeaders()
-        .append('Content-Type', 'application/x-www-form-urlencoded')
-        .append('Authorization', 'Basic YW5ndWxhcjpAbmd1bEByMA==');
-    const body = `username=${usuario}&password=${senha}&grant_type=password`;
+        .append('Content-Type', 'application/x-www-form-urlencoded');
+        
+    const body = `grant_type=password&client_id=3&client_secret=F3oxF2nVenPLUloE7PnBhXhVjMDulUrtiw1ckvRF&username=${usuario}&password=${senha}`;
+    
     return this.http.post<any>(this.oauthTokenUrl, body,
         { headers, withCredentials: true })
       .toPromise()
@@ -83,6 +91,30 @@ export class AuthService {
     return false;
   }
 
+  usuarioLogado() {
+    return this.http.get<any>(this.usuarioUrl)
+      .toPromise()
+      .then(response => response);
+  }
+
+  forgot(data): Promise<void> {
+    const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Accept', 'application/json');
+    
+    return this.http.post<any>(this.forgotUrl, data, { headers, withCredentials: true })
+      .toPromise();    
+  }
+
+  register(data): Promise<void> {
+    const headers = new HttpHeaders()
+        .append('Content-Type', 'application/json')
+        .append('Accept', 'application/json');
+    
+    return this.http.post<any>(this.registerUrl, data, { headers, withCredentials: true })
+      .toPromise();    
+  }
+
   private armazenarToken(token: string) {
     this.jwtPayload = this.jwtHelper.decodeToken(token);
     localStorage.setItem('token', token);
@@ -94,5 +126,6 @@ export class AuthService {
       this.armazenarToken(token);
     }
   }
+
 
 }

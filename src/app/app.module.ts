@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SegurancaModule } from './seguranca/seguranca.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtHttpInterceptor } from './seguranca/jwt-http-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { SegurancaModule } from './seguranca/seguranca.module';
   providers: [
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtHttpInterceptor, multi: true },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

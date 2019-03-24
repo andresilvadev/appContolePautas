@@ -1,29 +1,36 @@
 <div class="conteudo-login">
-  <ion-content>
-    <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col size-lg="5" size-md="6" size-xs="12" class="center-device">
-          <div text-center>
-            <img src="assets/images/logoCapptan.png" alt="logo" class="logo">
-          </div>
-          <div padding>
+    <ion-content>
+        <ion-grid>
+            <ion-row justify-content-center>
+                <ion-col size-lg="5" size-md="6" size-xs="12" class="center-device">
+                    <div text-center>
+                        <img src="assets/images/logoCapptan.png" alt="logo" class="logo">
+                    </div>
 
-            <input type="text" placeholder="E-mail">
+                    <form autocomplete="off" #f="ngForm">
 
-            <input type="password" placeholder="Senha">
+                        <div padding>
 
-          </div>
+                            <input type="text" placeholder="E-mail" name="usuario" ngModel required #usuario>
 
-          <div padding>
-            <ion-button size="large" expand="block" class="round" color="warning">Entrar</ion-button>
+                            <input type="password" placeholder="Senha" name="senha" placeholder="Senha" ngModel required #senha>
 
-            <div class="m-t-25 m-l-5 m-r-5">
-              <a routerLink="/register" class="criar-conta">Criar conta</a>
-              <a routerLink="/forgot" class="esquecia-minha-senha">Recuperar senha</a>
-            </div>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+                        </div>
+
+                        <div padding>
+                            <ion-button size="large" expand="block" class="round" color="warning" [disabled]="!f.valid"
+                                (click)="login(usuario.value, senha.value); senha.value = '';">Entrar</ion-button>
+
+                            <div class="m-t-25 m-l-5 m-r-5">
+                                <a routerLink="/register" class="criar-conta">Criar conta</a>
+                                <a routerLink="/forgot" class="esquecia-minha-senha">Recuperar senha</a>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-content>
 </div>

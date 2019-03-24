@@ -1,33 +1,41 @@
 <div class="conteudo-login">
-    <ion-content>
-      <ion-grid>
-        <ion-row justify-content-center>
-          <ion-col size-lg="5" size-md="6" size-xs="12" class="center-device">
-            <div text-center>
-              <img src="assets/images/logoCapptan.png" alt="logo" class="logo">
-            </div>
-            <div padding>
-              <input type="text" placeholder="Nome completo">
-  
-              <input type="text" placeholder="E-mail">
-  
-              <input type="password" placeholder="Senha">
+  <ion-content>
+    <ion-grid>
+      <ion-row justify-content-center>
+        <ion-col size-lg="5" size-md="6" size-xs="12" class="center-device">
+          <div text-center>
+            <img src="assets/images/logoCapptan.png" alt="logo" class="logo">
+          </div>
 
-              <input type="password" placeholder="Confirme sua senha">
-  
-            </div>
-  
+          <form autocomplete="off" #f="ngForm">
+
             <div padding>
-              <ion-button size="large" expand="block" class="round" color="warning">Criar minha conta</ion-button>
-  
+              <input type="text" placeholder="Nome completo" name="nome" ngModel required #nome>
+              
+              <input type="text" placeholder="E-mail" name="email" ngModel required #email>
+              
+              <input type="password" placeholder="Senha" name="senha" ngModel required #senha>
+
+              <input type="password" placeholder="Confirme sua senha" name="confirmaSenha" ngModel required #confirmaSenha>
+
+            </div>
+
+            <div padding>
+              <ion-button size="large" expand="block" class="round" color="warning" [disabled]="!f.valid"
+              (click)="register(nome.value, email.value, senha.value, confirmaSenha.value);
+              nome.value = ''; email.value = ''; senha.value = ''; confirmaSenha.value = '';"
+              >Criar minha conta</ion-button>
+
               <div class="m-t-25 m-l-5 m-r-5">
                 <a routerLink="/login" class="login">Login</a>
                 <a routerLink="/forgot" class="criar-conta">Recuperar senha</a>
               </div>
             </div>
-          </ion-col>
-          
-        </ion-row>
-      </ion-grid>
-    </ion-content>
-  </div>
+
+          </form>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
