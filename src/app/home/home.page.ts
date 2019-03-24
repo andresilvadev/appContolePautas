@@ -58,6 +58,8 @@ export class HomePage {
 
     listaPautasAbertas() {
         this.pautasAbertas = [];
+        this.data = null;
+
         this.pautaService.listarTodas()
             .then(resultado => {
                 let arrayPautas: any = resultado;
@@ -66,13 +68,18 @@ export class HomePage {
                         this.pautasAbertas.push(pauta)
                     }
                 });
-                this.data = this.pautasAbertas;
+                
+                setTimeout(() => {
+                    this.data = this.pautasAbertas;        
+                }, 300);
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
 
     listaPautasFechadas() {
         this.pautasFechadas = [];
+        this.data = null;
+
         this.pautaService.listarTodas()
             .then(resultado => {
                 let arrayPautas: any = resultado;
@@ -81,7 +88,9 @@ export class HomePage {
                         this.pautasFechadas.push(pauta)
                     }
                 });
-                this.data = this.pautasFechadas;
+                setTimeout(() => {
+                    this.data = this.pautasFechadas;        
+                }, 300);
             })
             .catch(erro => this.errorHandler.handle(erro));
     }

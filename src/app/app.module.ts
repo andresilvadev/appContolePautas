@@ -14,17 +14,16 @@ import { SegurancaModule } from './seguranca/seguranca.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,    
   ],
   entryComponents: [],
   imports: [
     BrowserModule, 
     BrowserAnimationsModule,
 
-    CoreModule,
+    CoreModule,    
     SegurancaModule,
-    AppRoutingModule,
-
+    AppRoutingModule,    
     IonicModule.forRoot(), 
   ],
   providers: [

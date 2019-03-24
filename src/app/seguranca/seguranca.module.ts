@@ -8,7 +8,7 @@ import { AuthGuard } from './auth.guard';
 import { LogoutService } from './logout.service';
 import { SegurancaRoutingModule } from './seguranca-routing.module';
 import { environment } from '../../environments/environment';
-import { LoginComponent } from './login/login.component';
+// import { LoginPage } from '../login/login.page';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -18,7 +18,7 @@ export function tokenGetter() {
   imports: [
     CommonModule,
     FormsModule,
-
+    
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -29,11 +29,14 @@ export function tokenGetter() {
     SegurancaRoutingModule
   ],
   declarations: [
-    LoginComponent
+    // LoginPage
   ],
   providers: [
     AuthGuard,
     LogoutService
+  ],
+  exports: [
+    // LoginPage
   ]
 })
 export class SegurancaModule { }

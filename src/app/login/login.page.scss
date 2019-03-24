@@ -1,0 +1,85 @@
+ion-content {
+    --background: transparent !important;
+}
+
+.logo {
+    max-width: 160px;
+}
+
+.round {
+    border-radius: 25px !important;
+}
+
+.conteudo-login {    
+    background-image: url("../../assets/images/background.svg");
+    background-size: cover;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.center-device {
+    top: 15vh;
+}
+
+input[type=text],
+input[type=password] {
+    background-color: #f6f6f641;
+    border: none;
+    color: rgb(247, 247, 247);
+    padding: 15px;
+    text-decoration: none;
+    font-size: 16px;
+    width: 100%;
+    border: 0px solid #f6f6f6;
+    transition: all 0.5s ease-in-out;
+    height: 45px;    
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border-radius: 25px;
+}
+
+.criar-conta {
+    color: #fff;
+    text-decoration: none;
+    float: left;
+    font-size: 16px;
+}
+
+.esquecia-minha-senha {
+    color: #fff;
+    text-decoration: none;
+    float: right;
+    font-size: 16px;
+}
+
+$white-color: transparent;
+$height100: 100%;
+
+ion-grid {
+    width:100%;
+    height: $height100;    
+}
+
+ion-row {
+    height: $height100;    
+}
+
+ion-col {
+    border: 0px solid #488aff;
+    background: $white-color;
+}
+
+ion-button {    
+    --border-radius: 25px;
+    text-transform: none;
+}
+
+@media (min-width: 240px) and (max-width: 768px) {
+    ion-grid {
+        background: $white-color;
+    }
+    ion-col {
+        border: none;
+    }
+}

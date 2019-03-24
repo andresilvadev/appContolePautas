@@ -8,11 +8,13 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { PautaService } from '../pauta/pauta.service';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    
+  ],
   imports: [    
     CommonModule,
-    HttpClientModule,
-    RouterModule
+    HttpClientModule,    
+    RouterModule,    
   ],
   providers: [
     AuthService,

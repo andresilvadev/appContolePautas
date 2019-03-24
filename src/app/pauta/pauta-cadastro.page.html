@@ -21,12 +21,12 @@
 
     <ion-item>
       <ion-label position="stacked">Breve Descrição</ion-label>
-      <ion-textarea type="text" name="descricao" #descricao [(ngModel)]="pauta.descricao" required></ion-textarea>
+      <ion-textarea type="text" rows="4" name="descricao" #descricao [(ngModel)]="pauta.descricao" required></ion-textarea>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Detalhes</ion-label>
-      <ion-input type="text" name="detalhes" #detalhes [(ngModel)]="pauta.detalhes" required></ion-input>
+      <ion-textarea type="text" rows="4" name="detalhes" #detalhes [(ngModel)]="pauta.detalhes" required></ion-textarea>
     </ion-item>
 
     <ion-item>
@@ -46,9 +46,5 @@
     <ion-button expand="block" class="m-t-15" color="medium" (click)='nova()'>Limpar</ion-button>
 
   </form>
-
-  <pre class="m-t-15">
-    {{ pauta | json }}
-  </pre>
 
 </ion-content>
