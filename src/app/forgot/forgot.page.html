@@ -12,7 +12,12 @@
             <div padding>
               <h3 class="m-b-5">Esqueçeu sua senha?</h3>
               <small>Informe seu e-mail e clique em recuperar senha</small>
-              <input class="m-t-10" type="text" placeholder="E-mail" name="email" ngModel required #email>
+              
+              <ion-text color="light" *ngIf="email.hasError('email') && email.dirty">
+                  <h4>O e-mail informado é inválido!</h4>
+              </ion-text>
+
+              <input class="m-t-10" type="text" name="email" #email="ngModel" [(ngModel)]="usuario.email" [email]="true" placeholder="E-mail" required>
             </div>
 
             <div padding>

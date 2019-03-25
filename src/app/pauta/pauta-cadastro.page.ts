@@ -18,12 +18,13 @@ export class PautaCadastroPage {
     pauta = new PautaModel;
     pautas = [];
     isLoading = false;
+    usuarioNome: string;
 
     constructor(
         public toastController: ToastController,
         public loadingController: LoadingController,
         private title: Title,
-        private router: Router,
+        private router: Router,        
         private route: ActivatedRoute,
         private pautaService: PautaService,
         private errorHandler: ErrorHandlerService,
@@ -40,6 +41,8 @@ export class PautaCadastroPage {
         if (idPauta) {
             this.carregarPauta(idPauta);
         }
+        
+        this.pauta.autor = localStorage.getItem('usuarioNome');
     }
 
     ionViewDidLeave() {
@@ -50,11 +53,11 @@ export class PautaCadastroPage {
         return Boolean(this.pauta.id)
     }
 
-    carregarPauta(id: number) {
+    carregarPauta(id: number) {        
         this.pautaService.buscarPorCodigo(id)
             .then(pauta => {
                 this.pauta = pauta;
-                this.atualizarTituloEdicao();
+                this.atualizarTituloEdicao();                
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
@@ -67,22 +70,26 @@ export class PautaCadastroPage {
         }
     }
 
-    adicionarPauta(form: FormControl) {
+    adicionarPauta(form: FormControl) {  
+        this.presentLoadingWithOptions();         
         this.pautaService.adicionar(this.pauta)
             .then(pautaAdicionada => {
                 this.presentToast();
                 this.router.navigate(['']);
                 this.pauta = new PautaModel;
+                this.loadingController.dismiss();
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
 
     atualizarPauta(form: FormControl) {
+        this.presentLoadingWithOptions();
         this.pautaService.atualizar(this.pauta)
             .then(pautaAtualizada => {
                 this.presentToast();
                 this.atualizarTituloEdicao();
                 this.router.navigate(['tabs/home']);
+                this.loadingController.dismiss();
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
@@ -90,6 +97,7 @@ export class PautaCadastroPage {
     nova() {
         setTimeout(function () {
             this.pauta = new PautaModel();
+            this.pauta.autor = this.pauta.autor = localStorage.getItem('usuarioNome');
         }.bind(this), 1);
         this.router.navigate(['/tabs/pauta']);
     }
@@ -109,5 +117,15 @@ export class PautaCadastroPage {
         });
         toast.present();
     }
+
+    async presentLoadingWithOptions() {
+        const loading = await this.loadingController.create({
+          spinner: 'lines',      
+          message: 'Enviando...',
+          translucent: true,
+          cssClass: 'custom-class custom-loading'
+        });
+        return await loading.present();
+      } 
 
 }

@@ -31,12 +31,12 @@
 
     <ion-item>
       <ion-label position="stacked">Autor</ion-label>
-      <ion-input type="text" name="autor" #autor [(ngModel)]="pauta.autor" required></ion-input>
+      <ion-input type="text" name="autor" #autor [(ngModel)]="pauta.autor" required disabled></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="stacked">Status</ion-label>
-      <ion-select placeholder="Selecione uma opção" name="status" #status [(ngModel)]="pauta.status" required>
+      <ion-select placeholder="Selecione uma opção" name="status" #status [(ngModel)]="pauta.status" okText="Confirmar" cancelText="Cancelar" required>
         <ion-select-option value="ABERTO">Aberto</ion-select-option>
         <ion-select-option value="FECHADO">Fechado</ion-select-option>
       </ion-select>

@@ -9,17 +9,21 @@
 
                     <form autocomplete="off" #f="ngForm">
 
-                        <div padding>
+                        <div padding>                            
+                            
+                            <ion-text color="light" *ngIf="email.hasError('email') && email.dirty">
+                                <h4>O e-mail informado é inválido!</h4>
+                            </ion-text>                            
 
-                            <input type="text" placeholder="E-mail" name="usuario" ngModel required #usuario>
+                            <input type="text" name="email" #email="ngModel" [(ngModel)]="usuario.email" [email]="true" placeholder="E-mail" required>
 
-                            <input type="password" placeholder="Senha" name="senha" placeholder="Senha" ngModel required #senha>
+                            <input type="password" name="Senha" #senha="ngModel" [(ngModel)]="usuario.senha" placeholder="Senha" required>
 
                         </div>
 
                         <div padding>
                             <ion-button size="large" expand="block" class="round" color="warning" [disabled]="!f.valid"
-                                (click)="login(usuario.value, senha.value); senha.value = '';">Entrar</ion-button>
+                                (click)="login(email.value, senha.value); senha.value = '';">Entrar</ion-button>
 
                             <div class="m-t-25 m-l-5 m-r-5">
                                 <a routerLink="/register" class="criar-conta">Criar conta</a>

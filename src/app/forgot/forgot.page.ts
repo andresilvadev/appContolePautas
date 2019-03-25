@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../seguranca/auth.service';
 import { ErrorHandlerService } from '../core/error-handler.service';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
+import { UsuarioModel } from '../core/model';
 
 @Component({
   selector: 'app-forgot',
@@ -11,8 +12,11 @@ import { ToastController } from '@ionic/angular';
 })
 export class ForgotPage implements OnInit {
 
+  usuario = new UsuarioModel();
+
   constructor(
     private auth: AuthService,
+    public loadingController: LoadingController,
     private errorHandler: ErrorHandlerService,
     public toastController: ToastController,
     private router: Router
@@ -23,13 +27,16 @@ export class ForgotPage implements OnInit {
   ngOnInit() {}
 
   forgot(email: string) {
+    this.presentLoadingWithOptions();
     const emailObj = {
       email : email
     }    
     this.auth.forgot(emailObj)
-      .then(response => {        
+      .then(response => {
+        let res: any = response;
         this.router.navigate(['/login']);
-        this.presentToast(response.message);
+        this.presentToast(res.message);
+        this.loadingController.dismiss();
       })
       .catch(erro => {
         this.errorHandler.handle(erro);
@@ -46,6 +53,16 @@ export class ForgotPage implements OnInit {
         color: 'success'
     });
     toast.present();
-}
+  }
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      spinner: 'lines',      
+      message: 'Enviando solicitação de nova senha...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+  } 
 
 }

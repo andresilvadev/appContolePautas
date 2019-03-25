@@ -5,4 +5,11 @@ export class PautaModel {
     detalhes: string;
     autor: string;
     status: string = "ABERTO";
-  }
+}
+
+export class UsuarioModel {
+  name: string;
+  email: string;
+  password: string;
+  confirmaSenha: string;
+}
