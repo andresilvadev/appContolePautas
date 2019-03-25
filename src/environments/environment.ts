@@ -3,11 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://127.0.0.1:8000',
+    production: false,
+    apiUrl: 'https://protected-citadel-66992.herokuapp.com',
 
-  tokenWhitelistedDomains: [ new RegExp('http://127.0.0.1:8000') ],
-  tokenBlacklistedRoutes: [ new RegExp('\/oauth\/token') ]
+    tokenWhitelistedDomains: [new RegExp('https://protected-citadel-66992.herokuapp.com')],
+    tokenBlacklistedRoutes: [new RegExp('\/oauth\/token')]
 };
 
 /*

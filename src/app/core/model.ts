@@ -8,8 +8,8 @@ export class PautaModel {
 }
 
 export class UsuarioModel {
-  name: string;
-  email: string;
-  password: string;
-  confirmaSenha: string;
+    name: string;
+    email: string;
+    password: string;
+    confirmaSenha: string;
 }

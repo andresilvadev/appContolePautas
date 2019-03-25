@@ -1,7 +1,7 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://capptan-api.herokuapp.com',
+    production: true,
+    apiUrl: 'https://protected-citadel-66992.herokuapp.com',
 
-  tokenWhitelistedDomains: [ new RegExp('capptan-api.herokuapp.com') ],
-  tokenBlacklistedRoutes: [ new RegExp('\/oauth\/token') ]
+    tokenWhitelistedDomains: [new RegExp('https://protected-citadel-66992.herokuapp.com')],
+    tokenBlacklistedRoutes: [new RegExp('\/oauth\/token')]
 };

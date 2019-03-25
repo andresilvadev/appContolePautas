@@ -31,7 +31,7 @@ export class AuthService {
     const headers = new HttpHeaders()
         .append('Content-Type', 'application/x-www-form-urlencoded');
         
-    const body = `grant_type=password&client_id=3&client_secret=F3oxF2nVenPLUloE7PnBhXhVjMDulUrtiw1ckvRF&username=${usuario}&password=${senha}`;
+    const body = `grant_type=password&client_id=2&client_secret=0enp9fmVsbkeDGDfN2GWBvaYag60b3obCwH9XsF0&username=${usuario}&password=${senha}`;
     
     return this.http.post<any>(this.oauthTokenUrl, body,
         { headers, withCredentials: true })

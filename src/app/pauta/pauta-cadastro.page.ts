@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { PautaService } from './pauta.service';
-import { ErrorHandlerService } from '../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
-import { PautaModel } from '../core/model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { PautaService } from './pauta.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+
+import { PautaModel } from '../core/model';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
     selector: 'app-pauta-cadastro',
@@ -24,13 +25,11 @@ export class PautaCadastroPage {
         public toastController: ToastController,
         public loadingController: LoadingController,
         private title: Title,
-        private router: Router,        
+        private router: Router,
         private route: ActivatedRoute,
         private pautaService: PautaService,
         private errorHandler: ErrorHandlerService,
-    ) {
-        
-    }
+    ) { }
 
     ionViewDidEnter() {
         this.title.setTitle('Inclusão de pautas');
@@ -41,7 +40,7 @@ export class PautaCadastroPage {
         if (idPauta) {
             this.carregarPauta(idPauta);
         }
-        
+
         this.pauta.autor = localStorage.getItem('usuarioNome');
     }
 
@@ -53,11 +52,11 @@ export class PautaCadastroPage {
         return Boolean(this.pauta.id)
     }
 
-    carregarPauta(id: number) {        
+    carregarPauta(id: number) {
         this.pautaService.buscarPorCodigo(id)
             .then(pauta => {
                 this.pauta = pauta;
-                this.atualizarTituloEdicao();                
+                this.atualizarTituloEdicao();
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
@@ -70,8 +69,8 @@ export class PautaCadastroPage {
         }
     }
 
-    adicionarPauta(form: FormControl) {  
-        this.presentLoadingWithOptions();         
+    adicionarPauta(form: FormControl) {
+        this.presentLoadingWithOptions();
         this.pautaService.adicionar(this.pauta)
             .then(pautaAdicionada => {
                 this.presentToast();
@@ -120,12 +119,12 @@ export class PautaCadastroPage {
 
     async presentLoadingWithOptions() {
         const loading = await this.loadingController.create({
-          spinner: 'lines',      
-          message: 'Enviando...',
-          translucent: true,
-          cssClass: 'custom-class custom-loading'
+            spinner: 'lines',
+            message: 'Enviando...',
+            translucent: true,
+            cssClass: 'custom-class custom-loading'
         });
         return await loading.present();
-      } 
+    }
 
 }

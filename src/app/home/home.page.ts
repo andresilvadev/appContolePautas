@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ErrorHandlerService } from '../core/error-handler.service';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+
 import { PautaService } from '../pauta/pauta.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ErrorHandlerService } from '../core/error-handler.service';
 
 @Component({
     selector: 'app-home',
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class HomePage {
 
     data: any;
-    opcao: string = 'ABERTO';    
+    opcao: string = 'ABERTO';
     pautasAbertas = [];
     pautasFechadas = [];
     isChecked = true;
@@ -20,18 +21,17 @@ export class HomePage {
     constructor(
         private title: Title,
         private pautaService: PautaService,
-        private router: Router,
-        private route: ActivatedRoute,
+        private router: Router,        
         private errorHandler: ErrorHandlerService
     ) {
         setTimeout(() => {
-        
+
         }, 1500);
     }
 
-    ionViewDidEnter() {        
-        this.title.setTitle('Home');        
-        console.log("Entrou na home");        
+    ionViewDidEnter() {
+        this.title.setTitle('Home');
+        console.log("Entrou na home");
         console.log(this.isChecked);
 
         if (this.opcao === 'ABERTO') {
@@ -43,7 +43,7 @@ export class HomePage {
 
     segmentChanged(ev?: any) {
 
-        if(ev.detail.value) {
+        if (ev.detail.value) {
             this.opcao = ev.detail.value;
         }
 
@@ -68,7 +68,7 @@ export class HomePage {
                         this.pautasAbertas.push(pauta)
                     }
                 });
-                
+
                 setTimeout(() => {
                     this.data = this.pautasAbertas;
                     console.log(this.data);
@@ -91,16 +91,16 @@ export class HomePage {
                 });
                 setTimeout(() => {
                     this.data = this.pautasFechadas;
-                    console.log(this.data);    
+                    console.log(this.data);
                 }, 300);
             })
             .catch(erro => this.errorHandler.handle(erro));
     }
-    
-    pautaSelecionada(pauta: any) {        
+
+    pautaSelecionada(pauta: any) {
         this.router.navigate(['/tabs/pauta/', { id: pauta.id }]);
     }
-    
+
     clickedSearch() {
 
     }

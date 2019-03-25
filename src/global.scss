@@ -53,3 +53,22 @@ pre {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.img-header {
+  width: 50px;    
+  position: absolute;
+  right: 10px;
+}
+
+.img-preferencia {  
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  position: absolute;
+  bottom: 5;
+}
+
+.img-footer {
+  padding-top: 10px;
+  width: 160px;  
+}
